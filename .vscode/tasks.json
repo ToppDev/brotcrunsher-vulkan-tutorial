@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C++ project",
+            "type": "shell",
+            "command": "make",
+            "dependsOn": ["Build Vertex Shader", "Build Fragment Shader"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Build & run C++ project",
+            "type": "shell",
+            "command": "make",
+            "args": ["run"],
+            "dependsOn": ["Build Vertex Shader", "Build Fragment Shader"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Build Vertex Shader",
+            "type": "shell",
+            "command": "glslangValidator",
+            "args": ["-V", "src/shader.vert", "-o", "shader/vert.spv"],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "Build Fragment Shader",
+            "type": "shell",
+            "command": "glslangValidator",
+            "args": ["-V", "src/shader.frag", "-o", "shader/frag.spv"],
+            "presentation": {
+                "clear": true
+            }
+        }
+    ]
+}
